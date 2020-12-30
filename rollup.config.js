@@ -1,6 +1,7 @@
 import resolve from "@rollup/plugin-node-resolve";
 import babel from "@rollup/plugin-babel";
 import { terser } from "rollup-plugin-terser";
+import { string } from "rollup-plugin-string";
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -30,6 +31,9 @@ export default {
     babel({
       exclude: "node_modules/**",
       babelHelpers: "bundled",
+    }),
+    string({
+      include: "**/*.css",
     }),
     production && terser(),
   ],
